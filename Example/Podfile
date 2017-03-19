@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LoadingView_Example' do
+  pod 'LoadingView', :path => '../'
+
+  target 'LoadingView_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end

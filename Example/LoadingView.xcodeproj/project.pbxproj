@@ -30,8 +30,8 @@
 /* Begin PBXFileReference section */
 		154291873983FDD385D1F344 /* Pods-LoadingView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Example/Pods-LoadingView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1DA5AE85A38B0033FEEB2571 /* Pods_LoadingView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadingView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		30B686949A8978018E17C696 /* LoadingView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LoadingView.podspec; path = ../LoadingView.podspec; sourceTree = "<group>"; };
-		5FF2E52FC0AEB32C87F29AA9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		30B686949A8978018E17C696 /* LoadingView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LoadingView.podspec; path = ../LoadingView.podspec; sourceTree = "<group>"; };
+		5FF2E52FC0AEB32C87F29AA9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LoadingView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoadingView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A38ECA4438063F00CD1D2B3F /* Pods_LoadingView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadingView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9E11B6AFCC4F794375C934D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		A9E11B6AFCC4F794375C934D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B126AA0A51A3C06CD65A98AF /* Pods-LoadingView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C3F0B42C11835B919C425736 /* Pods-LoadingView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Example/Pods-LoadingView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E0A778460F991A820397EE77 /* Pods-LoadingView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +172,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				340702EB387D0B41A9590A2D /* [CP] Embed Pods Frameworks */,
 				B3CCE240206D85ACE47A17A0 /* [CP] Copy Pods Resources */,
+				D8F0398C1E7FF3DD00F1E077 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -338,6 +339,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D8F0398C1E7FF3DD00F1E077 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EB1D46E4218985382408C9A5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -13,6 +13,7 @@ class LoadingView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.frame = frame.insetBy(dx: self.frame.size.width-100, dy: self.frame.size.height-100)
     }
 
 }

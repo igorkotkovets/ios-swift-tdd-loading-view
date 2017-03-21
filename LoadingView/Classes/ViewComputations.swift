@@ -10,6 +10,5 @@ import Foundation
 
 public class ViewComputations {
     public init() {
-        
     }
 }

@@ -12,10 +12,6 @@ public class LoadingView: UIView {
     var viewComputations: ViewComputations?
     
     
-    initWithFrame(frame: CGRect) {
-        
-    }
-    
     override public func layoutSubviews() {
         super.layoutSubviews()
         

@@ -172,6 +172,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				340702EB387D0B41A9590A2D /* [CP] Embed Pods Frameworks */,
 				B3CCE240206D85ACE47A17A0 /* [CP] Copy Pods Resources */,
+				D8F0398C1E7FF3DD00F1E077 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -339,6 +340,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D8F0398C1E7FF3DD00F1E077 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		EB1D46E4218985382408C9A5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -502,6 +516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -516,6 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

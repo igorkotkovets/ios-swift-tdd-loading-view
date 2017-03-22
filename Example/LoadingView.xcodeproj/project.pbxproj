@@ -45,6 +45,7 @@
 		A9E11B6AFCC4F794375C934D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B126AA0A51A3C06CD65A98AF /* Pods-LoadingView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C3F0B42C11835B919C425736 /* Pods-LoadingView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Example/Pods-LoadingView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D80532111E82F7C800DCE25A /* LoadingView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LoadingView.playground; sourceTree = "<group>"; };
 		D87D74B01E7E89220041B0D5 /* ViewComputationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComputationsTests.swift; sourceTree = "<group>"; };
 		E0A778460F991A820397EE77 /* Pods-LoadingView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +90,7 @@
 				607FACD11AFB9204008FA782 /* Products */,
 				1A67573B493B1B0F818FA1D9 /* Pods */,
 				F73886D27DA710B08B9E12BC /* Frameworks */,
+				D80532101E82F7B100DCE25A /* Playgrounds */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +150,14 @@
 				A9E11B6AFCC4F794375C934D /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		D80532101E82F7B100DCE25A /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				D80532111E82F7C800DCE25A /* LoadingView.playground */,
+			);
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		F73886D27DA710B08B9E12BC /* Frameworks */ = {

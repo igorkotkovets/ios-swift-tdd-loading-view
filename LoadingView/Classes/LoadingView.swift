@@ -10,7 +10,7 @@ import UIKit
 
 public class LoadingView: UIView {
     var viewComputations: ViewComputations?
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -23,7 +23,5 @@ public class LoadingView: UIView {
     }
     override public func layoutSubviews() {
         super.layoutSubviews()
-        
-        
     }
 }

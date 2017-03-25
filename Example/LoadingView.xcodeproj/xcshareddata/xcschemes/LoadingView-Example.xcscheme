@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "LoadingView_Tests.xctest"
-               BlueprintName = "LoadingView_Tests"
+               BuildableName = "LoadingView_Tests3.xctest"
+               BlueprintName = "LoadingView_Tests3"
                ReferencedContainer = "container:LoadingView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,6 +47,16 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "LoadingView_Tests3.xctest"
+               BlueprintName = "LoadingView_Tests3"
+               ReferencedContainer = "container:LoadingView.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D80FA6F01E866256007E535A"
                BuildableName = "LoadingView_Tests.xctest"
                BlueprintName = "LoadingView_Tests"
                ReferencedContainer = "container:LoadingView.xcodeproj">

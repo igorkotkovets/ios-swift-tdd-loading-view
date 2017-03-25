@@ -1,37 +1,23 @@
 //
-//  FramesManagerTests.swift
-//  LoadingView
+//  LoadingView_Tests.swift
+//  LoadingView_Tests
 //
-//  Created by Igor Kotkovets on 3/23/17.
+//  Created by Igor Kotkovets on 3/25/17.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
 import XCTest
- import LoadingView
 
-
-class FramesManagerTests: XCTestCase {
-    var framesManager: FramesManager?
+class LoadingView_Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        framesManager = FramesManager()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-    }
-    
-    func testThatFramesManagerCountToOne() {
-        // given
-        let framesManager = FramesManager()
-        
-        // when
-        framesManager.frame()
-        
-        // then
-        XCTAssertEqual(1, framesManager.getFramesCount())
     }
     
     func testExample() {

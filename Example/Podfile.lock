@@ -1,13 +1,7 @@
 PODS:
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
   - LoadingView (0.1.0)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
   - LoadingView (from `../`)
 
 EXTERNAL SOURCES:
@@ -15,9 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   LoadingView: 9404578b705e8b3d230e786602883c7568706d3a
 
-PODFILE CHECKSUM: b424725d16eb9cf428a3a7ce98fc9573f02bc120
+PODFILE CHECKSUM: 17e4c5d7a82f4858b59486d80db94bb4fcde2a09
 
 COCOAPODS: 1.2.0

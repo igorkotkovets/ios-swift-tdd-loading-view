@@ -17,6 +17,7 @@ public class LoadingView: UIView {
                         NSBackgroundColorAttributeName: UIColor.clear]
     let viewSize: CGSize = CGSize(width: 100, height: 100)
     let framesManager: FramesManager = FramesManager(RealTimestampProvider())
+    let dotRadius: CGFloat = 5
     var displayLink: CADisplayLink?
 
     public override init(frame: CGRect) {
@@ -58,10 +59,8 @@ public class LoadingView: UIView {
         if framesManager.canGo() {
             if let ctx = UIGraphicsGetCurrentContext() {
                 drawFPS(ctx)
+                draw(dotAtX: self.bounds.midX, y: self.bounds.midY, in: ctx)
             }
-            print("draw")
-        } else {
-            print("skipped")
         }
 
         framesManager.frame()
@@ -83,6 +82,19 @@ public class LoadingView: UIView {
         context.translateBy(x: 0, y: self.bounds.size.height)
         context.scaleBy(x: 1, y: -1)
         CTFrameDraw(frame, context)
+        path.closeSubpath()
+    }
+
+    private func draw(dotAtX xCenter: CGFloat, y yCenter: CGFloat, in context: CGContext) {
+        let path = CGMutablePath()
+        path.addArc(center: CGPoint(x: xCenter, y: yCenter),
+                    radius: dotRadius,
+                    startAngle: 0, endAngle: CGFloat.pi*2,
+                    clockwise: true)
+        path.closeSubpath()
+        context.addPath(path)
+        context.setFillColor(UIColor.green.cgColor)
+        context.fillPath()
     }
 
 }

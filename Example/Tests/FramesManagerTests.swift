@@ -138,7 +138,7 @@ class FramesManagerTests: XCTestCase {
         framesManager.frame() // Initialization frame (we need previous frames’s time)
         
         // when
-        timestampProvider.add(1.0/FramesManager.maxFps)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame)
         framesManager.frame()
         
         // then
@@ -150,7 +150,7 @@ class FramesManagerTests: XCTestCase {
         framesManager.frame() // Initialization frame (we need previous frames’s time)
         
         // when
-        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
         framesManager.frame()
         
         // then
@@ -162,11 +162,11 @@ class FramesManagerTests: XCTestCase {
         framesManager.frame() // Initialization frame (we need previous frames’s time)
         
         // when
-        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
         framesManager.frame()
-        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
         framesManager.frame()
-        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
         framesManager.frame()
         
         // then
@@ -179,7 +179,7 @@ class FramesManagerTests: XCTestCase {
         
         // when
         for _ in 0..<3 {
-            timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+            timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
             framesManager.frame()
         }
         timestampProvider.add(1.001)
@@ -195,7 +195,7 @@ class FramesManagerTests: XCTestCase {
         
         // when
         for _ in 0..<3 {
-            timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+            timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
             framesManager.frame()
         }
         timestampProvider.add(1.001)
@@ -210,7 +210,7 @@ class FramesManagerTests: XCTestCase {
         framesManager.frame() // Initialization frame (we need previous frames’s time)
         
         // when
-        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame+0.001)
         framesManager.frame()
         
         // then
@@ -222,20 +222,27 @@ class FramesManagerTests: XCTestCase {
         framesManager.frame() // Initialization frame (we need previous frames’s time)
         
         // when
-        timestampProvider.add(1.0/FramesManager.maxFps-0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame-0.001)
         framesManager.frame() // canGo should be false
-        timestampProvider.add(1.0/FramesManager.maxFps-0.001)
+        timestampProvider.add(FramesManager.Constants.minTimePerFrame-0.001)
         framesManager.frame() // canGo should be true
         
         // then
         XCTAssertEqual(true, framesManager.canGo())
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testThatDoesntLooseTimeForTimeFrame() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        for _ in 0..<3 {
+            timestampProvider.add(FramesManager.Constants.minTimePerFrame/2+FramesManager.Constants.minTimePerFrame/3)
+            framesManager.frame()
         }
+        
+        // then
+        XCTAssertEqual(2, framesManager.fps())
     }
     
 }

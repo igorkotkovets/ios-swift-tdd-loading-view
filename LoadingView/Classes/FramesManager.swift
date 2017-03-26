@@ -9,12 +9,16 @@
 import Foundation
 
 public class FramesManager {
+    final class Constants {
+        static public let maxFps: TimeInterval = 60
+        static public let minTimePerFrame: TimeInterval = 1.0/maxFps
+    }
+
     private var frames: Int = 0
     private var lastTimestamp: TimeInterval = 0
     private var timeSpan: TimeInterval = 0
     private var _fps: Int = 0
-    static public let maxFps: TimeInterval = 60
-    private let timePerFrame: TimeInterval = 1.0/maxFps
+
     private var timeFrame: TimeInterval = 0
     private var timestampProvider: TimestampProvider?
 
@@ -24,12 +28,13 @@ public class FramesManager {
 
     public func frame() {
         if self.canGo() {
-            timeFrame = 0
+            timeFrame = timeFrame.truncatingRemainder(dividingBy: Constants.minTimePerFrame)
         }
-        
-        let timeStep = timestampProvider!.timestamp()-lastTimestamp
+
+        let currentTimestamp = timestampProvider!.timestamp()
+        let timeStep = currentTimestamp-lastTimestamp
         timeFrame += timeStep
-        timeSpan += timeFrame
+        timeSpan += timeStep
         if timeSpan > 1 {
             timeSpan = 0
             _fps = getFramesCount()
@@ -40,7 +45,7 @@ public class FramesManager {
             frames += 1
         }
 
-        lastTimestamp = timestampProvider!.timestamp()
+        lastTimestamp = currentTimestamp
     }
 
     public func fps() -> Int {
@@ -52,6 +57,6 @@ public class FramesManager {
     }
 
     public func canGo() -> Bool {
-        return timeFrame > timePerFrame
+        return timeFrame > Constants.minTimePerFrame
     }
 }

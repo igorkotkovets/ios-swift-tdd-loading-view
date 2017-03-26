@@ -16,6 +16,7 @@
 		D80FA6F41E866256007E535A /* LoadingView_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80FA6F31E866256007E535A /* LoadingView_Tests.swift */; };
 		D80FA6FB1E866268007E535A /* FramesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806A0871E844BD900FAA303 /* FramesManagerTests.swift */; };
 		D80FA7021E86737C007E535A /* Pods_LoadingView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80FA7011E86737C007E535A /* Pods_LoadingView_Example.framework */; };
+		D8EB85F51E87F9FE00FAC67E /* RealTimestampProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB85F41E87F9FE00FAC67E /* RealTimestampProviderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		D80FA6FC1E866568007E535A /* LoadingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LoadingView.framework; path = "../../../Library/Developer/Xcode/DerivedData/LoadingView-gnxultdlkqpmxcfwnqdphyvektys/Build/Products/Debug-iphonesimulator/LoadingView/LoadingView.framework"; sourceTree = "<group>"; };
 		D80FA7011E86737C007E535A /* Pods_LoadingView_Example.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_LoadingView_Example.framework; path = "../../../Library/Developer/Xcode/DerivedData/LoadingView-gnxultdlkqpmxcfwnqdphyvektys/Build/Products/Debug-iphonesimulator/Pods_LoadingView_Example.framework"; sourceTree = "<group>"; };
 		D87D74B01E7E89220041B0D5 /* ViewComputationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComputationsTests.swift; sourceTree = "<group>"; };
+		D8EB85F41E87F9FE00FAC67E /* RealTimestampProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimestampProviderTests.swift; sourceTree = "<group>"; };
 		E0A778460F991A820397EE77 /* Pods-LoadingView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadingView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadingView_Tests/Pods-LoadingView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 			children = (
 				D87D74B01E7E89220041B0D5 /* ViewComputationsTests.swift */,
 				D806A0871E844BD900FAA303 /* FramesManagerTests.swift */,
+				D8EB85F41E87F9FE00FAC67E /* RealTimestampProviderTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -405,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D80FA6F41E866256007E535A /* LoadingView_Tests.swift in Sources */,
+				D8EB85F51E87F9FE00FAC67E /* RealTimestampProviderTests.swift in Sources */,
 				D80FA6FB1E866268007E535A /* FramesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreText
 
 public class LoadingView: UIView {
     var viewComputations: ViewComputations?
@@ -15,7 +16,7 @@ public class LoadingView: UIView {
                         NSForegroundColorAttributeName: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),
                         NSBackgroundColorAttributeName: UIColor.clear]
     let viewSize: CGSize = CGSize(width: 100, height: 100)
-    let framesManager: FramesManager = FramesManager()
+    let framesManager: FramesManager = FramesManager(RealTimestampProvider())
     var displayLink: CADisplayLink?
 
     public override init(frame: CGRect) {
@@ -54,14 +55,36 @@ public class LoadingView: UIView {
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        let fpsString = String(format: drawFPS, framesManager.fps())
-        fpsString.draw(in: self.bounds, withAttributes: drawFPSAttrs)
+        if framesManager.canGo() {
+            if let ctx = UIGraphicsGetCurrentContext() {
+                drawFPS(ctx)
+            }
+            print("draw")
+        }
+        else {
+            print("skipped")
+        }
+        
+
+        framesManager.frame()
     }
 
     @objc private func tick(sender: CADisplayLink) {
-
-        framesManager.frame(current: sender.timestamp)
         self.setNeedsDisplay()
+    }
+
+    private func drawFPS(_ context: CGContext) {
+        let fpsString = String(format: drawFPS, framesManager.fps())
+        let fpsAttributedString = NSAttributedString(string: fpsString, attributes: drawFPSAttrs)
+        let path = CGMutablePath()
+        path.addRect(self.bounds)
+        let framesetter = CTFramesetterCreateWithAttributedString(fpsAttributedString)
+        let frame = CTFramesetterCreateFrame(framesetter,
+                                             CFRangeMake(0, fpsString.lengthOfBytes(using: .utf8)),
+                                             path, nil)
+        context.translateBy(x: 0, y: self.bounds.size.height);
+        context.scaleBy(x: 1, y: -1);
+        CTFrameDraw(frame, context)
     }
 
 }

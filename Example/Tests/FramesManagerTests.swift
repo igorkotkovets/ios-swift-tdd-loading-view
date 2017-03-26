@@ -7,17 +7,29 @@
 //
 
 import XCTest
- import LoadingView
+@testable import LoadingView
 
 
-class FramesManagerTests: XCTestCase {
-    var framesManager: FramesManager!
-    var baseDate: Date!
+class FakeTimestampProvider: TimestampProvider {
+    private var _timestamp: TimeInterval = 0.0
+
+    func add(_ offset: TimeInterval) {
+        _timestamp += offset
+    }
+
+    // MARK: TimestampProvider
+    func timestamp() -> TimeInterval {
+        return _timestamp
+    }
+}
+
+
+class FakeTimestampProviderTests: XCTestCase {
+    var timestampProvider: FakeTimestampProvider!
     
     override func setUp() {
         super.setUp()
-        framesManager = FramesManager()
-        baseDate = Date()
+        timestampProvider = FakeTimestampProvider()
     }
     
     override func tearDown() {
@@ -25,75 +37,76 @@ class FramesManagerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testThatFramesManagerCountToOne() {
+    func testThatReturnsOneSecond() {
         // given
-        let framesManager = FramesManager()
         
         // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate!))
+        timestampProvider.add(1.0)
         
         // then
-        XCTAssertEqual(1, framesManager.getFramesCount())
+        XCTAssertEqual(1.0, timestampProvider.timestamp())
     }
     
-    func testThatFramesManagerCountToThree() {
+    func testThatReturnsElapsedTime() {
         // given
         
         // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        timestampProvider.add(0.5)
+        timestampProvider.add(1.0)
         
         // then
-        XCTAssertEqual(3, framesManager.getFramesCount())
+        XCTAssertEqual(1.5, timestampProvider.timestamp())
+    }
+}
+
+
+class FramesManagerTests: XCTestCase {
+    var framesManager: FramesManager!
+    var timestampProvider: FakeTimestampProvider!
+    
+    override func setUp() {
+        super.setUp()
+        timestampProvider = FakeTimestampProvider()
+        framesManager = FramesManager(timestampProvider)
+    }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
     }
     
     func testThatFramesManagerResetsCountAfterOneSecond() {
         // given
         
         // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        sleep(1);
-        framesManager.frame(current: Date().timeIntervalSince(baseDate!))
+        framesManager.frame()
+        timestampProvider.add(0.03)
+        framesManager.frame()
+        timestampProvider.add(0.03)
+        framesManager.frame()
+        timestampProvider.add(1.0)
+        framesManager.frame()
         
         // then
         XCTAssertEqual(1, framesManager.getFramesCount())
-    }
-    
-    func testThatFramesManagerResetsCountToThreeAfterOneSecond() {
-        // given
-        
-        // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        sleep(1);
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        
-        // then
-        XCTAssertEqual(3, framesManager.getFramesCount())
     }
     
     func testThatFramesManagerResetsCountToThreeWithDelaysAfterOneSecond() {
         // given
         
         // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 0.3sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 0.6sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 0.9sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 1.2sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 1.5sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(300000) // 1.8sec
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
         
         // then
         XCTAssertEqual(3, framesManager.getFramesCount())
@@ -103,22 +116,119 @@ class FramesManagerTests: XCTestCase {
         // given
         
         // when
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(1001000) // 1.1sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
-        usleep(1001000) // 1.1sec
-        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
+        timestampProvider.add(0.3)
+        framesManager.frame()
         
         // then
-        XCTAssertEqual(2, framesManager.fps())
+        XCTAssertEqual(3, framesManager.fps())
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testThatFrameSkipped() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        timestampProvider.add(1.0/FramesManager.maxFps)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(false, framesManager.canGo())
+    }
+    
+    func testThatFramesManagerMonitorsFramesProgress() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(1, framesManager.getFramesCount())
+    }
+    
+    func testThatFramesManagerFramesManagerIsAwareOfFramesPassed() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        framesManager.frame()
+        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        framesManager.frame()
+        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(3, framesManager.getFramesCount())
+    }
+    
+    func testThatFramesManagerResetsFramesAfterOneSecond() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        for _ in 0..<3 {
+            timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+            framesManager.frame()
+        }
+        timestampProvider.add(1.001)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(1, framesManager.getFramesCount())
+    }
+    
+    func testThatShowsFpsAfterOneSecond() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        for _ in 0..<3 {
+            timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+            framesManager.frame()
+        }
+        timestampProvider.add(1.001)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(3, framesManager.fps())
+    }
+    
+    func testThatFrameCanBeDrawn() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        timestampProvider.add(1.0/FramesManager.maxFps+0.001)
+        framesManager.frame()
+        
+        // then
+        XCTAssertEqual(true, framesManager.canGo())
+    }
+    
+    func testThatChecksIfFrameCanBeDrawn() {
+        // given
+        framesManager.frame() // Initialization frame (we need previous frames’s time)
+        
+        // when
+        timestampProvider.add(1.0/FramesManager.maxFps-0.001)
+        framesManager.frame() // canGo should be false
+        timestampProvider.add(1.0/FramesManager.maxFps-0.001)
+        framesManager.frame() // canGo should be true
+        
+        // then
+        XCTAssertEqual(true, framesManager.canGo())
     }
     
     func testPerformanceExample() {

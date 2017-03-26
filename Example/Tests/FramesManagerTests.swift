@@ -242,7 +242,7 @@ class FramesManagerTests: XCTestCase {
         }
         
         // then
-        XCTAssertEqual(2, framesManager.fps())
+        XCTAssertEqual(2, framesManager.getFramesCount())
     }
     
 }

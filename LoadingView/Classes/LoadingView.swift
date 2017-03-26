@@ -60,11 +60,9 @@ public class LoadingView: UIView {
                 drawFPS(ctx)
             }
             print("draw")
-        }
-        else {
+        } else {
             print("skipped")
         }
-        
 
         framesManager.frame()
     }
@@ -82,8 +80,8 @@ public class LoadingView: UIView {
         let frame = CTFramesetterCreateFrame(framesetter,
                                              CFRangeMake(0, fpsString.lengthOfBytes(using: .utf8)),
                                              path, nil)
-        context.translateBy(x: 0, y: self.bounds.size.height);
-        context.scaleBy(x: 1, y: -1);
+        context.translateBy(x: 0, y: self.bounds.size.height)
+        context.scaleBy(x: 1, y: -1)
         CTFrameDraw(frame, context)
     }
 

@@ -12,6 +12,7 @@ public class FramesManager {
     private var frames: Int = 0
     private var lastTimestamp: CFTimeInterval = 0
     private var timeSpan: CFTimeInterval = 0
+    private var _fps: Int = 0
 
     public init() {
 
@@ -20,12 +21,17 @@ public class FramesManager {
     public func frame(current timestamp: CFTimeInterval) {
         timeSpan += timestamp-lastTimestamp
         if timeSpan > 1 {
-            frames = 0
             timeSpan = 0
+            _fps = getFramesCount()
+            frames = 0
         }
 
         frames += 1
         lastTimestamp = timestamp
+    }
+
+    public func fps() -> Int {
+        return _fps
     }
 
     public func getFramesCount() -> Int {

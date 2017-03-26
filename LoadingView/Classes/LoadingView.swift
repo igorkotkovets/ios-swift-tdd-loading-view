@@ -14,7 +14,7 @@ public class LoadingView: UIView {
     let drawFPSAttrs: [String : Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 12),
                         NSForegroundColorAttributeName: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),
                         NSBackgroundColorAttributeName: UIColor.clear]
-    let viewSize: CGSize = CGSize(width: 100, height: 30)
+    let viewSize: CGSize = CGSize(width: 100, height: 100)
     let framesManager: FramesManager = FramesManager()
     var displayLink: CADisplayLink?
 
@@ -47,13 +47,14 @@ public class LoadingView: UIView {
         let origSize = self.frame.size
         self.frame = self.frame.insetBy(dx: (origSize.width-viewSize.width)/2.0,
                                         dy: (origSize.height-viewSize.height)/2.0).integral
+
         startDisplayLinkIfNeeded()
     }
 
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        let fpsString = String(format: drawFPS, framesManager.getFramesCount())
+        let fpsString = String(format: drawFPS, framesManager.fps())
         fpsString.draw(in: self.bounds, withAttributes: drawFPSAttrs)
     }
 

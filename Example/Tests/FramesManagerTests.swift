@@ -90,9 +90,30 @@ class FramesManagerTests: XCTestCase {
         usleep(300000) // 0.9sec
         framesManager.frame(current: Date().timeIntervalSince(baseDate))
         usleep(300000) // 1.2sec
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        usleep(300000) // 1.5sec
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        usleep(300000) // 1.8sec
         
         // then
-        XCTAssertEqual(1, framesManager.getFramesCount())
+        XCTAssertEqual(3, framesManager.getFramesCount())
+    }
+    
+    func testThatShowsCorrectNumberFPS() {
+        // given
+        
+        // when
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        usleep(1001000) // 1.1sec
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        usleep(1001000) // 1.1sec
+        framesManager.frame(current: Date().timeIntervalSince(baseDate))
+        
+        // then
+        XCTAssertEqual(2, framesManager.fps())
     }
     
     func testExample() {

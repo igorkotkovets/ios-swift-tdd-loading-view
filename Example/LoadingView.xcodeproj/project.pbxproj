@@ -16,6 +16,7 @@
 		D80FA6F41E866256007E535A /* LoadingView_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80FA6F31E866256007E535A /* LoadingView_Tests.swift */; };
 		D80FA6FB1E866268007E535A /* FramesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806A0871E844BD900FAA303 /* FramesManagerTests.swift */; };
 		D80FA7021E86737C007E535A /* Pods_LoadingView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80FA7011E86737C007E535A /* Pods_LoadingView_Example.framework */; };
+		D8B4D0B11E899EDC00939017 /* ViewComputationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D74B01E7E89220041B0D5 /* ViewComputationsTests.swift */; };
 		D8EB85F51E87F9FE00FAC67E /* RealTimestampProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB85F41E87F9FE00FAC67E /* RealTimestampProviderTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -409,6 +410,7 @@
 			files = (
 				D80FA6F41E866256007E535A /* LoadingView_Tests.swift in Sources */,
 				D8EB85F51E87F9FE00FAC67E /* RealTimestampProviderTests.swift in Sources */,
+				D8B4D0B11E899EDC00939017 /* ViewComputationsTests.swift in Sources */,
 				D80FA6FB1E866268007E535A /* FramesManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

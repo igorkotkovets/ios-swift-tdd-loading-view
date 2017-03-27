@@ -17,7 +17,6 @@ public class LoadingView: UIView {
                         NSBackgroundColorAttributeName: UIColor.clear]
     let viewSize: CGSize = CGSize(width: 100, height: 100)
     let framesManager: FramesManager = FramesManager(RealTimestampProvider())
-    let dotRadius: CGFloat = 5
     var displayLink: CADisplayLink?
 
     public override init(frame: CGRect) {
@@ -56,18 +55,18 @@ public class LoadingView: UIView {
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        if framesManager.canGo() {
-            if let ctx = UIGraphicsGetCurrentContext() {
-                drawFPS(ctx)
-                draw(dotAtX: self.bounds.midX, y: self.bounds.midY, in: ctx)
-            }
+        if let ctx = UIGraphicsGetCurrentContext() {
+            drawFPS(ctx)
+            draw(dotAtX: self.bounds.midX, y: self.bounds.midY, radius: 5, in: ctx)
         }
-
-        framesManager.frame()
     }
 
     @objc private func tick(sender: CADisplayLink) {
-        self.setNeedsDisplay()
+        if framesManager.canGo() {
+            self.setNeedsDisplay()
+        }
+
+        framesManager.frame()
     }
 
     private func drawFPS(_ context: CGContext) {
@@ -85,10 +84,10 @@ public class LoadingView: UIView {
         path.closeSubpath()
     }
 
-    private func draw(dotAtX xCenter: CGFloat, y yCenter: CGFloat, in context: CGContext) {
+    private func draw(dotAtX xCenter: CGFloat, y yCenter: CGFloat, radius fRadius: CGFloat, in context: CGContext) {
         let path = CGMutablePath()
         path.addArc(center: CGPoint(x: xCenter, y: yCenter),
-                    radius: dotRadius,
+                    radius: fRadius,
                     startAngle: 0, endAngle: CGFloat.pi*2,
                     clockwise: true)
         path.closeSubpath()

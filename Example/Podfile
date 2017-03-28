@@ -5,7 +5,7 @@ target 'LoadingView_Example' do
 
   target 'LoadingView_Tests' do
     inherit! :search_paths
-
-#    pod 'FBSnapshotTestCase'
+    use_frameworks!
+    pod 'Nimble', '~> 6.0.0'
   end
 end

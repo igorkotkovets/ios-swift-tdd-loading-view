@@ -1,8 +1,10 @@
 PODS:
   - LoadingView (0.1.0)
+  - Nimble (6.0.1)
 
 DEPENDENCIES:
   - LoadingView (from `../`)
+  - Nimble (~> 6.0.0)
 
 EXTERNAL SOURCES:
   LoadingView:
@@ -10,7 +12,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   LoadingView: 9404578b705e8b3d230e786602883c7568706d3a
+  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
 
-PODFILE CHECKSUM: 17e4c5d7a82f4858b59486d80db94bb4fcde2a09
+PODFILE CHECKSUM: 19ade06b54290c7c3f7739d9cc824626f1de0686
 
 COCOAPODS: 1.2.0

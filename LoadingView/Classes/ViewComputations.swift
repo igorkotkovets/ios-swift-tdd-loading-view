@@ -12,7 +12,7 @@ typealias AnimationDuration = CGFloat
 
 public class ViewComputations {
     private let animationDuration: AnimationDuration = 1
-    
+
     public init() {
     }
 

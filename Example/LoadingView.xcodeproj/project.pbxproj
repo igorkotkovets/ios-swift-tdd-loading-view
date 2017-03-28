@@ -13,6 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		BDDC723BBD4501AEA8D069BF /* Pods_LoadingView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA5AE85A38B0033FEEB2571 /* Pods_LoadingView_Tests.framework */; };
 		D80FA6F41E866256007E535A /* LoadingView_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80FA6F31E866256007E535A /* LoadingView_Tests.swift */; };
 		D80FA6FB1E866268007E535A /* FramesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806A0871E844BD900FAA303 /* FramesManagerTests.swift */; };
 		D80FA7021E86737C007E535A /* Pods_LoadingView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80FA7011E86737C007E535A /* Pods_LoadingView_Example.framework */; };
@@ -63,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D80FA7021E86737C007E535A /* Pods_LoadingView_Example.framework in Frameworks */,
+				BDDC723BBD4501AEA8D069BF /* Pods_LoadingView_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

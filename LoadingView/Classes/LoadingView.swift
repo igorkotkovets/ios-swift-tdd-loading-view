@@ -18,6 +18,12 @@ public class LoadingView: UIView {
     let viewSize: CGSize = CGSize(width: 100, height: 100)
     let framesManager: FramesManager = FramesManager(RealTimestampProvider())
     var displayLink: CADisplayLink?
+    let timestampProvider: TimestampProvider = RealTimestampProvider()
+    var midY: CGFloat = 0.0
+    var centerX0: CGFloat = 0.0
+    var centerX1: CGFloat = 0.0
+    var centerX2: CGFloat = 0.0
+    var dotRadius: CGFloat = 5.0
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +36,7 @@ public class LoadingView: UIView {
     }
 
     private func setup() {
-        self.viewComputations = ViewComputations()
+        self.viewComputations = ViewComputations(animation: 1)
     }
 
     private func startDisplayLinkIfNeeded() {
@@ -48,6 +54,10 @@ public class LoadingView: UIView {
         let origSize = self.frame.size
         self.frame = self.frame.insetBy(dx: (origSize.width-viewSize.width)/2.0,
                                         dy: (origSize.height-viewSize.height)/2.0).integral
+        midY = self.bounds.midY
+        centerX0 = 1*self.bounds.width/4
+        centerX1 = 2*self.bounds.width/4
+        centerX2 = 3*self.bounds.width/4
 
         startDisplayLinkIfNeeded()
     }
@@ -57,7 +67,19 @@ public class LoadingView: UIView {
 
         if let ctx = UIGraphicsGetCurrentContext() {
             drawFPS(ctx)
-            draw(dotAtX: self.bounds.midX, y: self.bounds.midY, radius: 5, in: ctx)
+            let timestamp = timestampProvider.timestamp()
+            draw(dotAtX: centerX0,
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 radius: dotRadius,
+                 in: ctx)
+            draw(dotAtX: centerX1,
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 radius: dotRadius,
+                 in: ctx)
+            draw(dotAtX: centerX2,
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 radius: dotRadius,
+                 in: ctx)
         }
     }
 

@@ -8,15 +8,16 @@
 
 import Foundation
 
-typealias AnimationDuration = CGFloat
+public typealias AnimationDuration = CGFloat
 
 public class ViewComputations {
-    private let animationDuration: AnimationDuration = 1
+    private var animationDuration: AnimationDuration = 1
 
-    public init() {
+    public init(animation duration: AnimationDuration) {
+        self.animationDuration = duration
     }
 
     public func getYPosition(afterTime sec: TimeInterval) -> CGFloat {
-        return sin(2.0*CGFloat.pi*CGFloat(sec)/animationDuration)
+        return (sin(2.0*CGFloat.pi*CGFloat(sec)/self.animationDuration)+1)/2
     }
 }

@@ -8,6 +8,7 @@
 
 import XCTest
 import LoadingView
+import Nimble
 
 class ViewComputationsTests: XCTestCase {
     private var viewComputations: ViewComputations!
@@ -15,7 +16,7 @@ class ViewComputationsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewComputations = ViewComputations()
+        viewComputations = ViewComputations(animation: 1)
     }
 
     override func tearDown() {
@@ -29,10 +30,10 @@ class ViewComputationsTests: XCTestCase {
         // when
         
         // then
-        XCTAssertEqual(0, viewComputations.getYPosition(afterTime: 0))
-//        XCTAssertEqual(1.0/2.0, viewComputations.getYPosition(afterTime: 0.083333333333333).round(FloatingPointRoundingRule))
-//        XCTAssertEqual(sqrt(2.0)/2.0, viewComputations.getYPosition(afterTime: 0.125))
-//        XCTAssertEqual(sqrt(2.0)/2.0, viewComputations.getYPosition(afterTime: 0.25))
+        expect(self.viewComputations.getYPosition(afterTime: 0)) == (0.0+1.0)/2
+        expect(self.viewComputations.getYPosition(afterTime: 0.083333333333333)) ≈ ((1.0/2.0+1)/2, 0.001)
+        expect(self.viewComputations.getYPosition(afterTime: 0.125)) == ((sqrt(2.0)/2.0+1)/2, 0.001)
+        expect(self.viewComputations.getYPosition(afterTime: 0.250)) == (1.0+1)/2
     }
 
     func testPerformanceExample() {

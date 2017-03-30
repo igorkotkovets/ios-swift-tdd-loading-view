@@ -30,10 +30,10 @@ class ViewComputationsTests: XCTestCase {
         // when
         
         // then
-        expect(self.viewComputations.getYPosition(afterTime: 0)) == (0.0+1.0)/2
-        expect(self.viewComputations.getYPosition(afterTime: 0.083333333333333)) ≈ ((1.0/2.0+1)/2, 0.001)
-        expect(self.viewComputations.getYPosition(afterTime: 0.125)) == ((sqrt(2.0)/2.0+1)/2, 0.001)
-        expect(self.viewComputations.getYPosition(afterTime: 0.250)) == (1.0+1)/2
+        expect(self.viewComputations.getYPosition(afterTime: -0.125, with: 0.125)) == (0.0+1.0)/2
+        expect(self.viewComputations.getYPosition(afterTime: 0, with: 0.083333333333333 )) ≈ ((1.0/2.0+1)/2, 0.001)
+        expect(self.viewComputations.getYPosition(afterTime: 0, with: 0.125)) == ((sqrt(2.0)/2.0+1)/2, 0.001)
+        expect(self.viewComputations.getYPosition(afterTime: 0.125, with: 0.125)) == (1.0+1)/2
     }
 
     func testPerformanceExample() {

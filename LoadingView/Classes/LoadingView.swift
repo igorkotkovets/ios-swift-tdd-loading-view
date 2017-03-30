@@ -15,7 +15,7 @@ public class LoadingView: UIView {
     let drawFPSAttrs: [String : Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 12),
                         NSForegroundColorAttributeName: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),
                         NSBackgroundColorAttributeName: UIColor.clear]
-    let viewSize: CGSize = CGSize(width: 100, height: 100)
+    let viewSize: CGSize = CGSize(width: 60, height: 100)
     let framesManager: FramesManager = FramesManager(RealTimestampProvider())
     var displayLink: CADisplayLink?
     let timestampProvider: TimestampProvider = RealTimestampProvider()
@@ -69,15 +69,15 @@ public class LoadingView: UIView {
             drawFPS(ctx)
             let timestamp = timestampProvider.timestamp()
             draw(dotAtX: centerX0,
-                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp, with: 0.0),
                  radius: dotRadius,
                  in: ctx)
             draw(dotAtX: centerX1,
-                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp, with: 0.125),
                  radius: dotRadius,
                  in: ctx)
             draw(dotAtX: centerX2,
-                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp),
+                 y: midY/2+self.bounds.midY*viewComputations!.getYPosition(afterTime: timestamp, with: 0.250),
                  radius: dotRadius,
                  in: ctx)
         }

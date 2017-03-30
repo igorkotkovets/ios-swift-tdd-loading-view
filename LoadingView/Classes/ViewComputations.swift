@@ -17,7 +17,7 @@ public class ViewComputations {
         self.animationDuration = duration
     }
 
-    public func getYPosition(afterTime sec: TimeInterval) -> CGFloat {
-        return (sin(2.0*CGFloat.pi*CGFloat(sec)/self.animationDuration)+1)/2
+    public func getYPosition(afterTime sec: TimeInterval, with offset: TimeInterval) -> CGFloat {
+        return (sin(2.0*CGFloat.pi*CGFloat(sec+offset)/self.animationDuration)+1)/2
     }
 }
